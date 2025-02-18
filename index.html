@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Still at the Airport</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #gameContainer {
+      background: #fff;
+      padding: 30px 40px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #555;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #28a745;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="gameContainer">
+    <h1>Still at the Airport</h1>
+    <div id="introSection">
+      <p>
+        Hey, don't worry about me – I'm not in jail! I'm stuck at the airport.
+      </p>
+      <button id="startBtn">Show me what's up</button>
+    </div>
+    
+    <div id="messageSection" class="hidden">
+      <p id="messageText">Press "Next" for the update.</p>
+      <button id="nextBtn">Next</button>
+    </div>
+    
+    <div id="finalSection" class="hidden">
+      <h2>Yes, I am still at the airport.</h2>
+      <p>
+        I might need a salon tomorrow!
+      </p>
+    </div>
+  </div>
+  
+  <script>
+    // Replace this value with the number of hours you've been stuck
+    function calculateHoursStuck() {
+    const arrivalTime = new Date("2025-02-17T10:00:00Z"); // Arrival time in UTC
+    const now = new Date(); // Current time (user's local timezone)
+    const hoursStuck = Math.floor((now - arrivalTime) / (1000 * 60 * 60)); // Convert milliseconds to hours
+    return hoursStuck;
+}   
+const messages = [
+  "Am I having fun? Not really. But am I worried? Nope, just waiting.",
+  "Immigration guys are super chill. They said, 'You can do anything!' (except leave, of course).",
+  "My PRO? Running around like he's in an action movie—airport, Meydan Freezone, immigration... repeat.",
+  "Weather’s nice. Light jacket weather. At least I’m not sweating.",
+  "This is starting to feel like that movie *The Terminal*. Just waiting for Tom Hanks to show up.",
+  `Been here since 17th Feb 2025, 10 AM. That means I’ve been stuck for ${calculateHoursStuck()} hours (not that I’m counting... okay, maybe a little).`,
+  "If this goes on, I might need a haircut. Maybe a full airport makeover?"
+];
+
+    let currentMessage = 0;
+
+    const startBtn = document.getElementById('startBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const introSection = document.getElementById('introSection');
+    const messageSection = document.getElementById('messageSection');
+    const messageText = document.getElementById('messageText');
+    const finalSection = document.getElementById('finalSection');
+
+    startBtn.addEventListener('click', () => {
+      introSection.classList.add('hidden');
+      messageSection.classList.remove('hidden');
+      messageText.textContent = messages[currentMessage];
+      currentMessage++;
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentMessage < messages.length) {
+        messageText.textContent = messages[currentMessage];
+        currentMessage++;
+      } else {
+        messageSection.classList.add('hidden');
+        finalSection.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
