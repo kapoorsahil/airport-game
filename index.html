@@ -74,25 +74,15 @@
   <button id="actionBtn">Show me what's up</button>
   
   <script>
-    // Calculate the hours stuck since 17 Feb 2025, 10 AM local time (adjusted to UTC 06:00:00Z)
-    function calculateHoursStuck() {
-      const arrivalTime = new Date("2025-02-17T06:00:00Z");
-      const now = new Date();
-      const hoursStuck = Math.floor((now - arrivalTime) / (1000 * 60 * 60));
-      return hoursStuck;
-    }
     
     // Array of messages to display
     const messages = [
-      "Am I having fun? Not really. But am I worried? Nope, just waiting.",
-      "Immigration guys are super chill. They said, 'You can do anything!' (except leave, of course).",
-      "My PRO? Running around like he's in an action movie—airport, Meydan Freezone, immigration... repeat.",
-      "Weather’s nice. Light jacket weather. At least I’m not sweating.",
-      "This is starting to feel like that movie *The Terminal*. Just waiting for Tom Hanks to show up.",
-      `Been here since 17th Feb 2025, 10 AM. That means I’ve been stuck for ${calculateHoursStuck()} hours (not that I’m counting... okay, maybe a little).`,
-      "If this goes on, I might need a haircut tomorrow."
+    "I arrived at the airport at 17 Feb, 10 AM, expecting just a brief wait.",
+      "The immigration folks were super friendly – they even joked that I could do anything!",
+      "Meanwhile, my PRO was running around between offices like a madman.",
+      "I ended up waiting for 34 hours amidst all the chaos and endless paperwork.",
+      "Finally, I got the permit and was allowed to exit. I'm out now, was a bit exhausted but with a wild story to tell!"
     ];
-    
     let currentMessage = 0;
     const messageText = document.getElementById("messageText");
     const actionBtn = document.getElementById("actionBtn");
@@ -109,7 +99,7 @@
         }
       } else {
         // Final message display
-        messageText.innerHTML = "<h1>Yes, I am still at the airport.</h1><p>If this goes on, I might need a haircut tomorrow.</p>";
+        messageText.innerHTML = "<h1>I'm out now!</h1><p>The crazy 34-hour ordeal is over. Thanks for your concern!</p>";
         actionBtn.style.display = "none"; // Hide button when done
       }
     });
